@@ -9,4 +9,5 @@ public interface ProgrammingLanguageRepository {
 	void delete(int id);
 	void update(ProgrammingLanguage programmingLanguage);
 	List<ProgrammingLanguage> getAll();
+	ProgrammingLanguage getById(int id) throws Exception;
 }

@@ -43,4 +43,9 @@ public class ProgrammingLanguagesController {
 		return programmingLanguageService.getAll();
 	}
 	
+	@GetMapping("/{id}")
+	public ProgrammingLanguage getById(int id) throws Exception {
+		return programmingLanguageService.getById(id);
+	}
+	
 }

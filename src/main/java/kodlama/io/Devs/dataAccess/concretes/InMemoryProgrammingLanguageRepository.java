@@ -34,7 +34,8 @@ public class InMemoryProgrammingLanguageRepository implements ProgrammingLanguag
 	public void update(ProgrammingLanguage programmingLanguage) {
 		for (ProgrammingLanguage programmingLanguage2 : programmingLanguages) {
 			if (programmingLanguage2.getId()==programmingLanguage.getId()) {
-				programmingLanguage.setName(programmingLanguage.getName());
+				programmingLanguage2.setName(programmingLanguage.getName());
+				programmingLanguage2.setId(programmingLanguage.getId());
 			}
 		}
 	}
@@ -42,6 +43,16 @@ public class InMemoryProgrammingLanguageRepository implements ProgrammingLanguag
 	@Override
 	public List<ProgrammingLanguage> getAll() {
 		return programmingLanguages;
+	}
+
+	@Override
+	public ProgrammingLanguage getById(int id) throws Exception {
+		for (ProgrammingLanguage programmingLanguage2 : programmingLanguages) {
+			if (programmingLanguage2.getId() == id) {
+				return programmingLanguage2;
+			}
+		}
+		throw new Exception("Eşleşen ID bulunamadı.");
 	}
 	
 }

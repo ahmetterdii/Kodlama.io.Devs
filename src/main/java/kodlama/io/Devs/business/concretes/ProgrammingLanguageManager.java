@@ -20,12 +20,26 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 
 	@Override
 	public void add(ProgrammingLanguage programmingLanguage) {
-		programmingLanguageRepository.add(programmingLanguage);
+		if (programmingLanguage.getName() == null) {
+			System.out.println("Programlama dili boş geçilemez.");
+		}
+		for (ProgrammingLanguage programmingLanguage2 : getAll()) {
+			if (programmingLanguage2.getName()==programmingLanguage.getName()) {
+				System.out.println("İsimler tekrar edilemez.");
+			}
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		programmingLanguageRepository.delete(id);
+		for (ProgrammingLanguage programmingLanguage2 : getAll()) {
+			if (programmingLanguage2.getId()==id) {
+				programmingLanguageRepository.delete(id);
+			}
+			else {
+				System.out.println("ID bulunamadı.");
+			}
+		}
 	}
 
 	@Override
@@ -36,6 +50,11 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 	@Override
 	public List<ProgrammingLanguage> getAll() {
 		return programmingLanguageRepository.getAll();
+	}
+
+	@Override
+	public ProgrammingLanguage getById(int id) throws Exception {
+		return programmingLanguageRepository.getById(id);
 	}
 
 }
